@@ -2,6 +2,7 @@ package commands
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"io"
 	"time"
@@ -16,9 +17,7 @@ import (
 	dag "github.com/ipfs/go-ipfs/merkledag"
 	path "github.com/ipfs/go-ipfs/path"
 	pin "github.com/ipfs/go-ipfs/pin"
-
-	context "context"
-
+	
 	cid "gx/ipfs/QmYhQaCYEcaPPjxJX7YcPcVKkQfRy6sJ7B3XmGFk82XYdQ/go-cid"
 )
 
