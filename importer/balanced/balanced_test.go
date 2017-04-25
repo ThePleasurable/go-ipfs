@@ -2,6 +2,7 @@ package balanced
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -15,8 +16,6 @@ import (
 	mdtest "github.com/ipfs/go-ipfs/merkledag/test"
 	pin "github.com/ipfs/go-ipfs/pin"
 	uio "github.com/ipfs/go-ipfs/unixfs/io"
-
-	"context"
 
 	u "gx/ipfs/QmWbjfz3u6HkAdPh34dgPchGbQjob6LXLhAeCGii2TX69n/go-ipfs-util"
 )
