@@ -3,7 +3,7 @@ package commands
 import (
 	"testing"
 
-	cmdsutil "gx/ipfs/QmWdiBLZ22juGtuNceNbvvHV11zKzCaoQFMP76x2w1XDFZ/go-ipfs-cmdkit"
+	cmdkit "gx/ipfs/QmeGapzEYCQkoEYN5x5MCPdj1zMGMHRjcPbA26sveo2XV4/go-ipfs-cmdkit"
 )
 
 func noop(req Request, res Response) {
@@ -12,9 +12,9 @@ func noop(req Request, res Response) {
 
 func TestOptionValidation(t *testing.T) {
 	cmd := Command{
-		Options: []cmdsutil.Option{
-			cmdsutil.IntOption("b", "beep", "enables beeper"),
-			cmdsutil.StringOption("B", "boop", "password for booper"),
+		Options: []cmdkit.Option{
+			cmdkit.IntOption("b", "beep", "enables beeper"),
+			cmdkit.StringOption("B", "boop", "password for booper"),
 		},
 		Run: noop,
 	}
@@ -59,7 +59,7 @@ func TestOptionValidation(t *testing.T) {
 	}
 
 	req, _ = NewRequest(nil, nil, nil, nil, nil, opts)
-	req.SetOption(cmdsutil.EncShort, "json")
+	req.SetOption(cmdkit.EncShort, "json")
 	res = cmd.Call(req)
 	if res.Error() != nil {
 		t.Error("Should have passed")
@@ -96,15 +96,15 @@ func TestOptionValidation(t *testing.T) {
 
 func TestRegistration(t *testing.T) {
 	cmdA := &Command{
-		Options: []cmdsutil.Option{
-			cmdsutil.IntOption("beep", "number of beeps"),
+		Options: []cmdkit.Option{
+			cmdkit.IntOption("beep", "number of beeps"),
 		},
 		Run: noop,
 	}
 
 	cmdB := &Command{
-		Options: []cmdsutil.Option{
-			cmdsutil.IntOption("beep", "number of beeps"),
+		Options: []cmdkit.Option{
+			cmdkit.IntOption("beep", "number of beeps"),
 		},
 		Run: noop,
 		Subcommands: map[string]*Command{
@@ -113,8 +113,8 @@ func TestRegistration(t *testing.T) {
 	}
 
 	cmdC := &Command{
-		Options: []cmdsutil.Option{
-			cmdsutil.StringOption("encoding", "data encoding type"),
+		Options: []cmdkit.Option{
+			cmdkit.StringOption("encoding", "data encoding type"),
 		},
 		Run: noop,
 	}
@@ -178,12 +178,12 @@ func TestWalking(t *testing.T) {
 
 func TestHelpProcessing(t *testing.T) {
 	cmdB := &Command{
-		Helptext: cmdsutil.HelpText{
+		Helptext: cmdkit.HelpText{
 			ShortDescription: "This is other short",
 		},
 	}
 	cmdA := &Command{
-		Helptext: cmdsutil.HelpText{
+		Helptext: cmdkit.HelpText{
 			ShortDescription: "This is short",
 		},
 		Subcommands: map[string]*Command{
